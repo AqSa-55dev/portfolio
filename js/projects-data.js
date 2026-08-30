@@ -1,0 +1,245 @@
+/**
+ * Centralized project data.
+ * To add a new project: add an object here + drop images in /projects/<slug>/
+ * No component changes required — cards and case-study pages render from this file.
+ */
+const PROJECTS = [
+  {
+    id: "intervai",
+    slug: "intervai",
+    title: "IntervAI",
+    eyebrow: "AI APPLICATIONS",
+    category: "AI Product",
+    year: "2026",
+    featured: true,
+    role: "Full-Stack / Frontend Developer",
+    shortDescription: "Turn a resume and job description into a personalized AI interview prep kit.",
+    description: "IntervAI is an AI-powered interview preparation tool that analyzes a user's resume alongside a specific job description and generates tailored interview questions, assessment areas, and answer guidance.",
+    problem: "Generic interview preparation gives candidates the same questions regardless of their background or the role they're targeting.",
+    solution: "Users provide their resume and job posting. IntervAI processes both and generates a tailored preparation kit containing categorized questions, what the interviewer is assessing, and guidance for approaching answers.",
+    features: [
+      "Resume + job description analysis",
+      "Personalized technical, behavioral, and role-specific questions",
+      "Interviewer assessment guidance",
+      "Answer-angle guidance",
+      "Copy-all questions",
+      "Persistent results across refreshes",
+      "Stateless request handling with rate limiting"
+    ],
+    technologies: ["Next.js 16", "React", "Tailwind CSS v4", "Groq API", "Llama 3.3 70B", "Vercel"],
+    outcome: "A working, deployed AI tool that demonstrates end-to-end product thinking — from prompt design to a production-safe API layer that keeps keys server-side and never stores user data.",
+    security: [
+      "API key remains server-side",
+      "Rate limiting",
+      "Resume/job-description input length limits",
+      "User data is not stored — stateless processing"
+    ],
+    image: "https://github.com/AqSa-55dev/IntervAI/raw/main/public/screenshots/InterAI-home.png",
+    screenshots: [
+      "https://github.com/AqSa-55dev/IntervAI/raw/main/public/screenshots/InterAI-home.png",
+      "https://github.com/AqSa-55dev/IntervAI/raw/main/public/screenshots/InterAI-Input.png",
+      "https://github.com/AqSa-55dev/IntervAI/raw/main/public/screenshots/IntervAI-output.png"
+    ],
+    frameType: "browser",
+    githubUrl: "https://github.com/AqSa-55dev/IntervAI",
+    liveUrl: "https://interv-ai-olive.vercel.app"
+  },
+  {
+    id: "field-ops",
+    slug: "field-ops",
+    title: "Field Operations Manager",
+    eyebrow: "OFFLINE-FIRST / PWA ENGINEERING",
+    category: "Progressive Web App",
+    year: "2026",
+    featured: true,
+    role: "Frontend Developer Intern",
+    shortDescription: "An offline-first field operations PWA built to keep technicians productive when connectivity disappears.",
+    description: "A production-oriented Progressive Web App for field operations that allows technicians to continue working offline, stores data locally, queues changes, and automatically synchronizes actions when connectivity returns.",
+    problem: "Field technicians can't always rely on stable internet connectivity.",
+    solution: "Offline-first architecture stores operational data locally, queues offline actions, and synchronizes changes when connectivity returns.",
+    features: [
+      "Full offline functionality with IndexedDB persistence",
+      "Offline form submission with automatic synchronization",
+      "Sync conflict detection",
+      "Background synchronization with retry logic (exponential backoff)",
+      "Service worker caching",
+      "Push notifications with deep linking",
+      "PWA installation",
+      "Responsive, mobile-first interface"
+    ],
+    technologies: ["React 18", "Vite", "React Router v6", "Zustand", "Dexie.js / IndexedDB", "Workbox 7", "Background Sync API", "Web Push API", "Axios"],
+    architectureHighlight: "Offline actions are stored locally and placed into a synchronization queue. When connectivity returns, queued operations are automatically retried and synchronized.",
+    accessibility: [
+      "Semantic HTML and ARIA where required",
+      "Keyboard navigation",
+      "WCAG AA contrast targets",
+      "Accessible form validation",
+      "Mobile-friendly touch targets"
+    ],
+    outcome: "A PWA that keeps working when the network doesn't — built around a real sync queue rather than a simple cache-and-hope approach. Achieved a 96+ Lighthouse score across all metrics and was tested across iOS and Android.",
+    image: "projects/field-ops/dashboard.png",
+    screenshots: ["projects/field-ops/dashboard.png"],
+    frameType: "browser",
+    githubUrl: "https://github.com/AqSa-55dev/field-ops-pwa",
+    liveUrl: "https://field-ops-pwa.netlify.app/"
+  },
+  {
+    id: "teyzix-analytics",
+    slug: "teyzix-analytics",
+    title: "TEYZIX Analytics Dashboard",
+    eyebrow: "DATA VISUALIZATION",
+    category: "Analytics Dashboard",
+    year: "2026",
+    featured: false,
+    role: "Frontend Developer Intern",
+    shortDescription: "An interactive SaaS analytics dashboard turning product data into clear, actionable visual insights.",
+    description: "A modern, interactive analytics dashboard built for a SaaS startup to monitor key performance indicators in real-time. The dashboard visualizes user activity, revenue trends, feature usage, and user segmentation with seamless live data updates — no full page reloads required.",
+    features: [
+      "Revenue vs. target line chart",
+      "Feature usage bar chart",
+      "User segmentation donut chart",
+      "KPI cards — total users, active users, revenue, churn rate",
+      "Global date-range filtering (7-day / 30-day / 3-month / 6-month / 1-year)",
+      "Automatic refresh polling with live countdown",
+      "CSV export",
+      "Dark/light theme",
+      "Animated data updates"
+    ],
+    technologies: ["React 18", "Vite", "Tailwind CSS", "Chart.js 4", "Axios"],
+    outcome: "Deployed on Vercel with a 98 Lighthouse performance score — shipped as one of three complete projects delivered during a one-month TEYZIX CORE internship.",
+    image: "https://github.com/AqSa-55dev/TEYZIX-Analytics-Dashboard/raw/main/public/preview.png",
+    screenshots: [
+      "https://github.com/AqSa-55dev/TEYZIX-Analytics-Dashboard/raw/main/public/preview.png",
+      "https://github.com/AqSa-55dev/TEYZIX-Analytics-Dashboard/raw/main/public/lighthouse.png"
+    ],
+    frameType: "browser",
+    githubUrl: "https://github.com/AqSa-55dev/TEYZIX-Analytics-Dashboard",
+    liveUrl: "https://teyzix-analytics-dashboard.vercel.app"
+  },
+  {
+    id: "mug-and-mood",
+    slug: "mug-and-mood",
+    title: "Mug & Mood",
+    eyebrow: "THEMING + ACCESSIBILITY",
+    category: "Frontend / UI Engineering",
+    year: "2026",
+    featured: false,
+    role: "Frontend Developer",
+    shortDescription: "Good coffee. Better moments. A responsive landing page with a carefully engineered light/dark experience.",
+    description: "Mug & Mood is a responsive coffee shop landing page created to demonstrate a robust theming system rather than a simple dark-mode color swap.",
+    problem: "A theme toggle can easily become a superficial visual switch.",
+    solution: "The project uses semantic CSS variables and a custom theme system that checks saved preference, falls back to OS preference, defaults to light mode, applies the theme before React loads to prevent a flash, and persists the choice.",
+    features: [
+      "Persistent light/dark theme with system preference detection",
+      "No-flash theme initialization",
+      "Semantic CSS variables with smooth theme transitions",
+      "Accessible theme toggle with keyboard support",
+      "Responsive layout with reusable components"
+    ],
+    technologies: ["React 18", "Vite", "Tailwind CSS v3", "Custom useTheme hook"],
+    accessibility: [
+      "Semantic HTML and keyboard navigation",
+      "Visible focus states",
+      "Dynamic ARIA label on the theme toggle",
+      "Contrast-conscious color system"
+    ],
+    outcome: "A small project that proves the theming system works correctly, not just that it looks fine in one mode.",
+    image: "projects/mug-and-mood/light-mode.png",
+    screenshots: ["projects/mug-and-mood/light-mode.png", "projects/mug-and-mood/dark-mode.png"],
+    frameType: "browser",
+    githubUrl: "https://github.com/AqSa-55dev/mug-and-mood",
+    liveUrl: null
+  },
+  {
+    id: "teyzix-redesign",
+    slug: "teyzix-redesign",
+    title: "TEYZIX CORE Website Redesign",
+    eyebrow: "UI/UX + INTERACTION DESIGN",
+    category: "UI/UX Redesign",
+    year: "2026",
+    featured: false,
+    role: "Frontend Developer Intern",
+    shortDescription: "Redesigned a technology company's website with a stronger visual system, responsive layouts, and purposeful micro-interactions.",
+    description: "A frontend redesign created during the TEYZIX CORE internship to improve the original website's visual hierarchy, interaction quality, responsiveness, and overall user experience while preserving the organization's identity.",
+    features: [
+      "Floating navbar with scroll-triggered behavior and active-link highlighting",
+      "8pt spacing system",
+      "Asymmetric bento service grid",
+      "Magnetic buttons and hover-card interactions",
+      "Desktop 3D card tilt",
+      "Scroll reveal animations",
+      "Fluid typography with clamp()",
+      "Reduced-motion support"
+    ],
+    technologies: ["HTML5", "CSS3", "Vanilla JavaScript", "IntersectionObserver", "requestAnimationFrame"],
+    architectureHighlight: "Zero external JavaScript libraries — every interaction and animation was implemented using browser-native APIs.",
+    outcome: "Proof that a polished, interactive experience doesn't require a framework — built entirely with vanilla HTML, CSS, and JS.",
+    image: "projects/teyzix-redesign/home.jpg",
+    screenshots: ["projects/teyzix-redesign/home.jpg"],
+    frameType: "browser",
+    githubUrl: "https://github.com/AqSa-55dev/Teyzix-Core-Website",
+    liveUrl: "https://teyzix-core-redesign.netlify.app/"
+  },
+  {
+    id: "metric",
+    slug: "metric",
+    title: "Metric",
+    eyebrow: "SAAS PRODUCT INTERFACES",
+    category: "SaaS Product UI",
+    year: "2026",
+    featured: false,
+    role: "Frontend Developer",
+    shortDescription: "A polished SaaS dashboard interface combining data visualization, responsive navigation, and persistent theming.",
+    description: "Metric is a frontend SaaS analytics dashboard interface — a UI template populated with mock JSON data — designed around a polished product interface, responsive information architecture, data visualization, and dark/light theming.",
+    features: [
+      "Dark/light mode with persistent theme preference",
+      "Responsive dashboard layout with mobile bottom/hamburger navigation",
+      "Interactive, animated Recharts visualizations",
+      "Multiple application views — Dashboard, Analytics, Users, Settings",
+      "Mock JSON data architecture, reusable dashboard components"
+    ],
+    technologies: ["React 19", "Vite", "React Router v7", "Recharts", "Lucide React", "Pure CSS"],
+    outcome: "A frontend UI template — not a production SaaS platform — that shows the interface craft of a real analytics product without claiming a backend that doesn't exist.",
+    image: "https://github.com/AqSa-55dev/SaaS_Dashboard/raw/main/public/preview.png",
+    screenshots: ["https://github.com/AqSa-55dev/SaaS_Dashboard/raw/main/public/preview.png"],
+    frameType: "browser",
+    githubUrl: "https://github.com/AqSa-55dev/SaaS_Dashboard",
+    liveUrl: null
+  },
+  {
+    id: "cafe-aroma",
+    slug: "cafe-aroma",
+    title: "Café Aroma",
+    eyebrow: "E-COMMERCE UI ENGINEERING",
+    category: "Café / Ordering Experience",
+    year: "2026",
+    featured: true,
+    role: "Frontend Developer",
+    shortDescription: "A polished café ordering experience — menu browsing, persistent cart state, and a full demo checkout flow.",
+    description: "Café Aroma is a modern, responsive café ordering experience built with Next.js, React, TypeScript and Tailwind CSS — a warm coffee-shop visual identity paired with menu browsing, category filtering, product cards, persistent cart state, and a frontend-only demo checkout flow.",
+    problem: "Building a genuinely production-feeling ordering flow — cart state, quantity controls, persistent storage, checkout — without a backend to lean on.",
+    solution: "The full ordering experience runs client-side: static local product data, cart state persisted to browser storage, and a demo checkout flow that mirrors a real purchase without processing real payments.",
+    features: [
+      "Menu browsing with category filters and search",
+      "Product cards with pricing and ratings",
+      "Add-to-cart with quantity controls and item removal",
+      "Cart persistence using browser storage",
+      "Order summary with subtotal and total",
+      "Frontend demo checkout flow",
+      "Responsive desktop and mobile layouts",
+      "Reusable React components"
+    ],
+    technologies: ["Next.js 16", "React", "TypeScript", "Tailwind CSS", "Lucide React", "Vercel"],
+    outcome: "A deliberately frontend-only build — no database, auth, or real payment processing — that still delivers the full feel of an e-commerce ordering flow, from menu to cart to checkout.",
+    image: "https://github.com/AqSa-55dev/cafe-aroma/raw/main/screenshots/hero.png",
+    screenshots: [
+      "https://github.com/AqSa-55dev/cafe-aroma/raw/main/screenshots/hero.png",
+      "https://github.com/AqSa-55dev/cafe-aroma/raw/main/screenshots/menu.png",
+      "https://github.com/AqSa-55dev/cafe-aroma/raw/main/screenshots/our-story.png",
+      "https://github.com/AqSa-55dev/cafe-aroma/raw/main/screenshots/cart.png"
+    ],
+    frameType: "browser",
+    githubUrl: "https://github.com/AqSa-55dev/cafe-aroma",
+    liveUrl: "https://cafe-aroma-alpha.vercel.app/"
+  }
+];

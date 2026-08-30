@@ -1,1086 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aqsa Basheer - Frontend Web Developer specializing in React and modern web technologies">
-    <meta name="keywords" content="web developer, frontend, React, JavaScript, portfolio">
-    <title>Aqsa Basheer | Frontend Web Developer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-dark: #0f172a;
-            --secondary-dark: #1e293b;
-            --tertiary-dark: #334155;
-            --accent-cyan: #06b6d4;
-            --accent-blue: #3b82f6;
-            --accent-purple: #a855f7;
-            --text-light: #f1f5f9;
-            --text-muted: #94a3b8;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #60a5fa, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--accent-cyan);
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin-top: 60px;
-            overflow: hidden;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            mix-blend-mode: multiply;
-            filter: blur(60px);
-            opacity: 0.3;
-            animation: blob-animation 7s infinite;
-        }
-
-        .blob:nth-child(1) {
-            width: 400px;
-            height: 400px;
-            background: var(--accent-blue);
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .blob:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            background: var(--accent-cyan);
-            top: 30%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .blob:nth-child(3) {
-            width: 300px;
-            height: 300px;
-            background: var(--accent-purple);
-            bottom: 10%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes blob-animation {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 800px;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero-tag {
-            color: var(--accent-cyan);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, #60a5fa, #06b6d4, #60a5fa);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 3s linear infinite;
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
-            color: white;
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(6, 182, 212, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent-cyan);
-            border: 2px solid var(--accent-cyan);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(6, 182, 212, 0.1);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-
-        .social-links a {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(6, 182, 212, 0.1);
-        }
-
-        .social-links a:hover {
-            color: var(--accent-cyan);
-            background: rgba(6, 182, 212, 0.2);
-            transform: translateY(-3px);
-        }
-
-        /* Sections */
-        section {
-            padding: 5rem 0;
-            border-bottom: 1px solid rgba(6, 182, 212, 0.1);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .project-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        .project-card:hover {
-            border-color: rgba(6, 182, 212, 0.5);
-            box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .project-card h3 {
-            color: var(--accent-cyan);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .project-card p {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .project-highlight {
-            color: var(--accent-blue);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            background: rgba(6, 182, 212, 0.2);
-            color: var(--accent-cyan);
-            padding: 0.25rem 0.75rem;
-            border-radius: 2rem;
-            font-size: 0.8rem;
-            border: 1px solid rgba(6, 182, 212, 0.3);
-        }
-
-        .project-link {
-            color: var(--accent-cyan);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: var(--accent-blue);
-            gap: 1rem;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-box {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 0.75rem;
-            padding: 2rem;
-        }
-
-        .skill-box h3 {
-            color: var(--accent-cyan);
-            margin-bottom: 1.5rem;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: rgba(6, 182, 212, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
-            border-radius: 10px;
-            animation: fillProgress 1.5s ease-out forwards;
-        }
-
-        @keyframes fillProgress {
-            from { width: 0; }
-        }
-
-        .progress-text {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-item {
-            background: rgba(6, 182, 212, 0.1);
-            color: var(--accent-cyan);
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.85rem;
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            border-color: rgba(6, 182, 212, 0.5);
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.1);
-        }
-
-        .service-card h3 {
-            color: var(--accent-cyan);
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent-cyan) 0%, transparent 100%);
-        }
-
-        .timeline-item {
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--accent-cyan);
-            border: 3px solid var(--primary-dark);
-            border-radius: 50%;
-            top: 0;
-        }
-
-        .timeline-content {
-            width: 45%;
-            margin-left: 52%;
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-        }
-
-        .timeline-content h3 {
-            color: var(--accent-cyan);
-        }
-
-        .timeline-date {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Education Section */
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .education-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 0.75rem;
-            padding: 2rem;
-        }
-
-        .education-card h3 {
-            color: var(--accent-cyan);
-            margin-bottom: 0.5rem;
-        }
-
-        .education-meta {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Contact Section */
-        #contact {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
-        }
-
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 0.75rem;
-            padding: 2rem;
-        }
-
-        .contact-item i {
-            font-size: 2rem;
-            color: var(--accent-cyan);
-            margin-bottom: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(6, 182, 212, 0.2);
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--text-muted);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item::before {
-                left: 20px;
-            }
-
-            .timeline-content {
-                width: calc(100% - 60px);
-                margin-left: 60px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aqsa Basheer | Frontend Developer</title>
+<meta name="description" content="Aqsa Basheer — Frontend Developer crafting interfaces that feel as good as they work. React, offline-first PWAs, and AI-powered product interfaces." />
+<meta name="keywords" content="Aqsa Basheer, frontend developer, React developer, Pakistan, UI/UX, portfolio" />
+<link rel="canonical" href="https://aqsa-55dev.github.io/portfolio/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Aqsa Basheer | Frontend Developer" />
+<meta property="og:description" content="Frontend Developer crafting interfaces that feel as good as they work." />
+<meta property="og:url" content="https://aqsa-55dev.github.io/portfolio/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">Aqsa Basheer</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#achievements">Achievements</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<nav class="site-nav" aria-label="Primary">
+  <div class="container">
+    <a href="#home" class="nav-logo"><span class="dot"></span>Aqsa Basheer</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <span class="nav-indicator"></span>
+    </div>
+    <div class="nav-cta">
+      <span class="availability"><span class="pulse"></span>Available for work</span>
+      <a class="btn btn-ghost btn-sm" href="#contact">Let's Talk</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu">
+    <a href="#home">Home</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="hero-status load-in load-in-1"><span class="pulse"></span>Available for freelance &amp; full-time</span>
+          <h1 class="load-in load-in-2">Frontend Developer crafting <em>interfaces</em> that feel as good as they work.</h1>
+          <p class="hero-role load-in load-in-3">Aqsa Basheer</p>
+          <p class="hero-desc load-in load-in-3">I build React applications, offline-first PWAs, and AI-powered product interfaces — with an eye for the details that separate a working site from a polished one.</p>
+          <div class="hero-actions load-in load-in-4">
+            <a class="btn btn-primary" href="#work">View Projects</a>
+            <a class="btn btn-ghost" href="#contact">Let's Work Together</a>
+          </div>
+          <div class="hero-social load-in load-in-5">
+            <a href="https://github.com/AqSa-55dev" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://linkedin.com/in/aqsa-basheer" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:aqsakhilji2@gmail.com">Email</a>
+          </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        
-        <div class="hero-content">
-            <p class="hero-tag">Welcome to my portfolio</p>
-            <h1>Hi, I'm <span>Aqsa Basheer</span></h1>
-            <p>Frontend Developer & UI/UX Enthusiast</p>
-            <p style="color: var(--text-muted); font-size: 1.05rem;">
-                Building modern, responsive web experiences with React, JavaScript, and cutting-edge web technologies. Computer Science graduate with a passion for creating beautiful and performant applications.
-            </p>
-
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="mailto:aqsakhilji2@gmail.com" class="btn btn-secondary">Get In Touch</a>
+        <div class="hero-visual load-in load-in-3" aria-hidden="false">
+          <div class="ai-console">
+            <div class="console-bar">
+              <span></span><span></span><span></span>
+              <span class="console-title">assistant.ts</span>
             </div>
-
-            <div class="social-links">
-                <a href="https://github.com/AqSa-55dev" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/aqsa-basheer" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:aqsakhilji2@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <div class="console-body">
+              <div class="console-line">
+                <span class="prompt-caret">&gt;</span>
+                <span class="typed-text"></span><span class="cursor-blink">▍</span>
+              </div>
+              <div class="console-thinking">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="console-output"></div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+      <a class="console-caption" href="project.html?slug=intervai">Same workflow shipped in IntervAI →</a>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="section-subtitle">6 showcase projects demonstrating my frontend expertise</p>
+      <div class="stat-strip reveal">
+        <div class="stat"><div class="num" data-target="7" data-suffix="+">0</div><div class="label">Projects Shipped</div></div>
+        <div class="stat"><div class="num" data-target="3" data-suffix="">0</div><div class="label">Internships</div></div>
+        <div class="stat"><div class="num" data-target="6" data-suffix="">0</div><div class="label">Certifications</div></div>
+        <div class="stat"><div class="num" data-target="3.5" data-suffix="">0</div><div class="label">CGPA</div></div>
+      </div>
+    </div>
+  </section>
 
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>NeuroFlex - EEG Cognitive Therapy</h3>
-                    <p class="project-highlight">Final Year Project | Real-time Monitoring</p>
-                    <p>Real-time EEG-driven cognitive therapy system with advanced monitoring and reporting. Demonstrates expertise in real-time data processing and UI implementation.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Real-time</span>
-                    </div>
-                    <a href="https://github.com/AqSa-55dev/NeuroFlex-Mobile-App" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+  <section id="work">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">SELECTED WORK</p>
+        <h2>From idea to interface.</h2>
+        <p>Selected projects where frontend engineering meets thoughtful product design.</p>
+      </div>
+      <div class="projects-bento" id="featured-projects"></div>
 
-                <div class="project-card">
-                    <h3>field-ops-pwa</h3>
-                    <p class="project-highlight">Progressive Web App | Offline Support</p>
-                    <p>Offline-first Progressive Web App for field operations. Built with modern web standards for seamless offline functionality and fast performance.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">PWA</span>
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/AqSa-55dev/field-ops-pwa" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <div class="project-card">
-                    <h3>TEYZIX Analytics Dashboard</h3>
-                    <p class="project-highlight">Internship Project | Data Analytics</p>
-                    <p>Advanced analytics dashboard built during internship at TEYZIX CORE. Displays real-time metrics and data visualization for comprehensive business insights.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/AqSa-55dev/TEYZIX-Analytics-Dashboard" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Teyzix-Core Website Redesign</h3>
-                    <p class="project-highlight">Frontend Redesign | Performance Optimization</p>
-                    <p>Enhanced frontend redesign of the TEYZIX CORE website. Improved UX, performance optimization, and modern design with vanilla JavaScript.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">Vanilla JS</span>
-                    </div>
-                    <a href="https://github.com/AqSa-55dev/Teyzix-Core-Website" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Nurture Tech Agency Website</h3>
-                    <p class="project-highlight">Agency Portfolio | Responsive Design</p>
-                    <p>Modern portfolio website for Nurture Tech Agency. Responsive design with smooth animations and professional UI implementation.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/AqSa-55dev/nurture-website" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Frontend Tasks Collection</h3>
-                    <p class="project-highlight">Skill Showcase | Multiple Projects</p>
-                    <p>Collection of frontend development tasks showcasing various web development techniques, component building, and modern web practices.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/AqSa-55dev/Frontend_Tasks" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+      <div style="margin-top:5rem;">
+        <div class="section-head reveal" style="margin-bottom:1.5rem;">
+          <p class="eyebrow">MORE WORK</p>
         </div>
-    </section>
+        <div class="more-work-grid" id="more-projects"></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <p class="section-subtitle">Expertise in modern web technologies and development practices</p>
+  <section id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">ABOUT</p>
+        <h2>Frontend developer crafting interfaces that feel as good as they work.</h2>
+        <p>I focus on clean architecture, responsive design, and performance that holds up under scrutiny — including a 98 Lighthouse-scoring analytics dashboard and a 96+ scoring offline-first PWA, both shipped during a one-month internship at TEYZIX CORE. Alongside the code, I bring a foundation in data integrity, project coordination, and agile collaboration — and I'm currently exploring how AI can extend, not replace, good product design.</p>
+      </div>
+    </div>
+  </section>
 
-            <div class="skills-grid">
-                <div class="skill-box">
-                    <h3>Frontend Development</h3>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 90%;"></div>
-                    </div>
-                    <p class="progress-text">90% proficiency</p>
-                    <div class="skill-items">
-                        <span class="skill-item">HTML5</span>
-                        <span class="skill-item">CSS3</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">React.js</span>
-                    </div>
-                </div>
-
-                <div class="skill-box">
-                    <h3>Tools & Platforms</h3>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 85%;"></div>
-                    </div>
-                    <p class="progress-text">85% proficiency</p>
-                    <div class="skill-items">
-                        <span class="skill-item">Git</span>
-                        <span class="skill-item">VS Code</span>
-                        <span class="skill-item">Firebase</span>
-                        <span class="skill-item">Figma</span>
-                    </div>
-                </div>
-
-                <div class="skill-box">
-                    <h3>Design & UX</h3>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 80%;"></div>
-                    </div>
-                    <p class="progress-text">80% proficiency</p>
-                    <div class="skill-items">
-                        <span class="skill-item">Responsive Design</span>
-                        <span class="skill-item">UI/UX</span>
-                        <span class="skill-item">Wireframing</span>
-                        <span class="skill-item">Mockups</span>
-                    </div>
-                </div>
-
-                <div class="skill-box">
-                    <h3>Programming Languages</h3>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 75%;"></div>
-                    </div>
-                    <p class="progress-text">75% proficiency</p>
-                    <div class="skill-items">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">Java</span>
-                    </div>
-                </div>
-            </div>
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">EXPERTISE</p>
+        <h2>Technical skills.</h2>
+      </div>
+      <div class="skills-bento reveal">
+        <div class="skill-card">
+          <h4>Frontend</h4>
+          <ul><li>React.js (Hooks, State Management)</li><li>JavaScript (ES6+, Async/Await)</li><li>HTML5</li><li>CSS3</li><li>Tailwind CSS</li><li>Responsive Design</li></ul>
         </div>
-    </section>
-
-    <!-- Services Section -->
-    <section>
-        <div class="container">
-            <h2 class="section-title">What I Offer</h2>
-            <p class="section-subtitle">Comprehensive frontend development services</p>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Responsive Web Design</h3>
-                    <p>Mobile-first, pixel-perfect designs that work seamlessly across all devices</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-                    <h3>Front-End Development</h3>
-                    <p>Fast, interactive, and dynamic websites using modern frameworks and best practices</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>UI/UX Implementation</h3>
-                    <p>Bringing design mockups to life with smooth animations and micro-interactions</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <h3>Performance Optimization</h3>
-                    <p>Website speed optimization and code efficiency for better user experience</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔌</div>
-                    <h3>API Integration</h3>
-                    <p>Real-time data fetching and seamless backend integration for dynamic applications</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🧩</div>
-                    <h3>Custom Components</h3>
-                    <p>Reusable, scalable UI components built with modern front-end technologies</p>
-                </div>
-            </div>
+        <div class="skill-card">
+          <h4>Tools &amp; Deployment</h4>
+          <ul><li>Git &amp; GitHub</li><li>VS Code</li><li>Vercel</li><li>Netlify</li><li>Android Studio</li><li>KNIME</li></ul>
         </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements">
-        <div class="container">
-            <h2 class="section-title">Achievements & Certifications</h2>
-            <p class="section-subtitle">Recognition of skills and accomplishments</p>
-
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Frontend Developer Internship</h3>
-                            <p class="timeline-date">2025</p>
-                            <p>CodeAlpha & Innovation Studio - Developed responsive front-end interfaces and components using HTML, CSS, JavaScript, and React.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Google Prompting Essentials Specialization</h3>
-                            <p class="timeline-date">2025</p>
-                            <p>Completed advanced specialization on Coursera covering modern prompt engineering and AI integration.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Interactive Wireframe Certificate</h3>
-                            <p class="timeline-date">Jan 2025</p>
-                            <p>Mockplus on Coursera - Project certificate for drawing interactive wireframes.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Figma Mockup Certificate</h3>
-                            <p class="timeline-date">June 2024</p>
-                            <p>Coursera - Project certificate for creating professional mockups in Figma.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Event Management Head Achievement</h3>
-                            <p class="timeline-date">2024</p>
-                            <p>Mathelete Society - Recognized for planning and managing university-level math and tech events.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Flutter Bootcamp</h3>
-                            <p class="timeline-date">2023</p>
-                            <p>Google Developer Student Club - 3-day intensive bootcamp on Flutter mobile development.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-top: 3rem; background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 0.75rem; padding: 2rem;">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 1.5rem;">All Certifications</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-                    <p><i class="fas fa-award" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Google Prompting Essentials Specialization — Coursera, 2025</p>
-                    <p><i class="fas fa-award" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Frontend Developer Internship — CodeAlpha</p>
-                    <p><i class="fas fa-award" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Interactive Wireframe in Mockplus — Coursera, Jan 2025</p>
-                    <p><i class="fas fa-award" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> HTML Elements Basics — Mindluster</p>
-                    <p><i class="fas fa-award" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Create a Mockup in Figma — Coursera, June 2024</p>
-                    <p><i class="fas fa-award" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Event Management Head Achievement — Mathelete Society</p>
-                    <p><i class="fas fa-award" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Flutter Bootcamp — Google Developer Student Club, 2023</p>
-                    <p><i class="fas fa-award" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Certificate in Information Technology (CIT) — Global Computer Institute</p>
-                </div>
-            </div>
+        <div class="skill-card">
+          <h4>Backend &amp; Data</h4>
+          <ul><li>MongoDB</li><li>SQL</li><li>Firebase</li></ul>
         </div>
-    </section>
+        <div class="skill-card">
+          <h4>AI-Assisted Workflow</h4>
+          <ul><li>Claude</li><li>GitHub Copilot</li><li>Cursor IDE</li><li>Google Gemini</li><li>Prompt Engineering</li></ul>
+        </div>
+        <div class="skill-card">
+          <h4>Design</h4>
+          <ul><li>Figma</li><li>Canva</li><li>CapCut</li></ul>
+        </div>
+        <div class="skill-card">
+          <h4>Languages</h4>
+          <ul><li>Python</li><li>Java</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Education & Experience -->
-    <section>
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
-                <div>
-                    <h2 class="section-title">Education</h2>
-                    <div class="education-grid">
-                        <div class="education-card">
-                            <h3>Bachelor of Science in Computer Science</h3>
-                            <p class="education-meta">Jinnah University for Women | 2022 - 2025</p>
-                            <p>CGPA: 3.5 | Specializing in web and mobile application development</p>
-                        </div>
-                        <div class="education-card">
-                            <h3>Intermediate (Pre-Medical)</h3>
-                            <p class="education-meta">R.B. Memon Model Higher Secondary College | 2020</p>
-                        </div>
-                    </div>
-                </div>
+  <section id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">SERVICES</p>
+        <h2>What I offer.</h2>
+      </div>
+      <div class="services-grid reveal">
+        <div class="service-card"><h4>Responsive Web Development</h4><p>Mobile-first, pixel-perfect builds that hold up across every screen size.</p></div>
+        <div class="service-card"><h4>Frontend Development</h4><p>Fast, interactive interfaces built with modern frameworks and clean practices.</p></div>
+        <div class="service-card"><h4>UI Implementation</h4><p>Turning design mockups into working, animated, production-ready interfaces.</p></div>
+        <div class="service-card"><h4>Performance Optimization</h4><p>Faster load times and leaner code, without sacrificing polish.</p></div>
+        <div class="service-card"><h4>API Integration</h4><p>Connecting interfaces to real data — cleanly, safely, and reliably.</p></div>
+        <div class="service-card"><h4>Custom Components</h4><p>Reusable, scalable UI building blocks built for teams to extend.</p></div>
+      </div>
+    </div>
+  </section>
 
-                <div>
-                    <h2 class="section-title">Experience</h2>
-                    <div class="education-card" style="margin-bottom: 1.5rem;">
-                        <h3>Web Development Intern</h3>
-                        <p class="education-meta">Innovation Studio & CodeAlpha (Remote) | 2025</p>
-                        <ul style="margin-left: 1rem; color: var(--text-muted);">
-                            <li>Developed responsive front-end interfaces using React & JavaScript</li>
-                            <li>Optimized website performance and handled real-world debugging</li>
-                            <li>Collaborated in remote team environments</li>
-                        </ul>
-                    </div>
-                    <div class="education-card">
-                        <h3>Event Manager</h3>
-                        <p class="education-meta">Mathelete Society, Jinnah University for Women</p>
-                        <p>Planned and managed university-level math and tech events, leading teams to success.</p>
-                    </div>
-                </div>
+  <section id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">EXPERIENCE</p>
+        <h2>Where I've worked.</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="t-year">May 2026</div>
+          <h4>Frontend Developer Intern</h4>
+          <div class="t-org">TEYZIX CORE — Remote</div>
+          <ul>
+            <li>Redesigned the company website in HTML, CSS &amp; vanilla JavaScript — glassmorphism navbar, asymmetric bento grid, magnetic buttons, 3D card tilt, scroll reveal — 100% responsive</li>
+            <li>Built a production-ready SaaS analytics dashboard in React with light/dark mode and live data visualizations, deployed on Vercel with a 98 Lighthouse score</li>
+            <li>Developed an offline-first PWA for field operations using React, Vite &amp; IndexedDB, achieving a 96+ Lighthouse score and tested across iOS/Android</li>
+            <li>Delivered all three projects within a one-month engagement, consistently meeting production-level code standards</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="t-year">Oct 2025</div>
+          <h4>Web Development Intern</h4>
+          <div class="t-org">Innovation Studio — Remote</div>
+          <ul>
+            <li>Developed responsive front-end interfaces and reusable UI components with HTML5, CSS3, JavaScript &amp; React</li>
+            <li>Collaborated with the dev team to optimize performance through code refactoring, image optimization, and bundle size reduction</li>
+            <li>Gained hands-on experience with production debugging workflows and Git-based version control</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="t-year">Jan–Feb 2025</div>
+          <h4>Frontend Developer Intern</h4>
+          <div class="t-org">CodeAlpha — Remote</div>
+          <ul>
+            <li>Built and delivered 5+ frontend projects using HTML5, CSS3, JavaScript &amp; React for real-world client assignments</li>
+            <li>Developed strong remote collaboration and Git workflow habits in a distributed team setting</li>
+            <li>Completed the program with a Certificate of Completion</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:4rem;">
+        <div class="section-head reveal" style="margin-bottom:1rem;">
+          <p class="eyebrow">LEADERSHIP &amp; VOLUNTEERING</p>
+        </div>
+        <div class="reveal">
+          <div class="edu-row">
+            <div>
+              <div class="edu-name">Event Manager</div>
+              <div class="edu-org">Mathelete Society, Jinnah University for Women · Planned 5+ university-level competitions, workshops &amp; lectures for 200+ participants</div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2 class="section-title">Let's Work Together</h2>
-                <p class="section-subtitle">I'm always interested in hearing about new projects and opportunities.</p>
-
-                <div class="cta-buttons" style="margin-bottom: 2rem;">
-                    <a href="mailto:aqsakhilji2@gmail.com" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Send an Email
-                    </a>
-                    <a href="https://linkedin.com/in/aqsa-basheer" target="_blank" class="btn btn-secondary">
-                        <i class="fab fa-linkedin"></i> Connect on LinkedIn
-                    </a>
-                </div>
-
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
-                        <p><a href="mailto:aqsakhilji2@gmail.com" style="color: var(--accent-cyan); text-decoration: none;">aqsakhilji2@gmail.com</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <h3>LinkedIn</h3>
-                        <p><a href="https://linkedin.com/in/aqsa-basheer" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">linkedin.com/in/aqsa-basheer</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <h3>GitHub</h3>
-                        <p><a href="https://github.com/AqSa-55dev" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">github.com/AqSa-55dev</a></p>
-                    </div>
-                </div>
+            <div class="edu-year">2022–2025</div>
+          </div>
+          <div class="edu-row">
+            <div>
+              <div class="edu-name">Volunteer</div>
+              <div class="edu-org">JTECH, Jinnah University for Women · Discipline &amp; judges coordination for tech events with 100+ participants</div>
             </div>
+            <div class="edu-year">2023–2025</div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Aqsa Basheer. All rights reserved. | Web Developer & UI/UX Enthusiast</p>
-            <p style="margin-top: 1rem;">Built with HTML • CSS • JavaScript | Modern Web Technologies</p>
+      <div style="margin-top:4rem;">
+        <div class="section-head reveal" style="margin-bottom:1rem;">
+          <p class="eyebrow">EDUCATION</p>
         </div>
-    </footer>
+        <div class="reveal">
+          <div class="edu-row">
+            <div>
+              <div class="edu-name">Bachelor of Science in Computer Science</div>
+              <div class="edu-org">Jinnah University for Women · CGPA 3.5</div>
+            </div>
+            <div class="edu-year">2022–2025</div>
+          </div>
+          <div class="edu-row">
+            <div>
+              <div class="edu-name">Intermediate (Pre-Medical)</div>
+              <div class="edu-org">R.B. Memon Model Higher Secondary College, Khuhra</div>
+            </div>
+          </div>
+          <div class="edu-row">
+            <div>
+              <div class="edu-name">Matriculation (Science)</div>
+              <div class="edu-org">R.B. Memon Model Higher Secondary College, Khuhra</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Smooth scroll behavior
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+  <section id="contact">
+    <div class="container cta-section reveal">
+      <p class="eyebrow" style="justify-content:center;">GET IN TOUCH</p>
+      <h2>Have an idea worth building?</h2>
+      <p class="sub">Let's turn it into something people actually enjoy using.</p>
+      <a class="btn btn-primary" href="mailto:aqsakhilji2@gmail.com">Let's Talk</a>
 
-        // Intersection Observer for fade-in animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+      <div class="contact-links">
+        <div class="c-item">
+          <div class="c-label">Email</div>
+          <a class="c-value" href="mailto:aqsakhilji2@gmail.com">aqsakhilji2@gmail.com</a>
+        </div>
+        <div class="c-item">
+          <div class="c-label">LinkedIn</div>
+          <a class="c-value" href="https://linkedin.com/in/aqsa-basheer" target="_blank" rel="noopener">linkedin.com/in/aqsa-basheer</a>
+        </div>
+        <div class="c-item">
+          <div class="c-label">GitHub</div>
+          <a class="c-value" href="https://github.com/AqSa-55dev" target="_blank" rel="noopener">github.com/AqSa-55dev</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+</main>
 
-        document.querySelectorAll('.project-card, .skill-box, .service-card, .education-card').forEach(el => {
-            observer.observe(el);
-        });
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">Aqsa Basheer<span>Frontend Developer</span></div>
+    <div class="footer-links">
+      <a href="https://github.com/AqSa-55dev" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/aqsa-basheer" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:aqsakhilji2@gmail.com">Email</a>
+    </div>
+    <div class="footer-copy">© 2026 Aqsa Basheer</div>
+  </div>
+</footer>
 
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navUl = document.querySelector('nav ul');
-        
-        menuToggle.addEventListener('click', () => {
-            navUl.style.display = navUl.style.display === 'flex' ? 'none' : 'flex';
-        });
-    </script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
